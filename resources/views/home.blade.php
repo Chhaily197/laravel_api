@@ -8,6 +8,12 @@
 </head>
 <body>
     <h1 style="font-size: 100px; text-align: center;">Home</h1>
+        <a href="{{ route('profile') }}">My Profile</a>
+        @if ($user->photo)
+           <img src="{{ asset('storage/' . $user->photo) }}" alt="Profile_image">           
+        @else
+            <p>No profile image available</p>
+        @endif
     <form action="/logout" method="POST">
         @csrf
         @method('POST')

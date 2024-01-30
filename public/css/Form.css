@@ -41,3 +41,26 @@ form button{
     padding: 12px;
     cursor: pointer;
 }
+.g-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    flex-direction: column;
+    position: relative;
+}
+.g-profile img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+#profile_image{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+    border-radius: 50%;
+    margin: auto;
+    opacity: 0;
+}

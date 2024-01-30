@@ -9,10 +9,15 @@
 </head>
 <body>
     <div class="container">
-        <form action="/register" method="POST">
+        <form action="/register" method="POST" enctype="multipart/form-data">
             @csrf
             @method('POST')
         <h1>REGISTER</h1>
+            <div class="g-profile">
+                <label for="profile_image">Profile Image</label>
+                <input type="file" name="profile_image" id="profile_image">
+                <img id="pro_img" alt="">
+            </div>
             <div class="g-form">
                 <label for="username">Username</label>
                 <input type="text" name="username" required>
@@ -28,5 +33,6 @@
             <button type="submit">SUBMIT</button>
         </form>
     </div>
+    <script src="{{ asset('js/Form.js')}}"></script>
 </body>
 </html>
