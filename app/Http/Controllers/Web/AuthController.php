@@ -28,7 +28,7 @@ class AuthController extends Controller
         ]);
 
         if($validate->fails()){
-            return redirect()->back()->withErrors($validate)->withInput();
+            return redirect()->route('register');
         }
          if($req->hasFile('profile_image')){
             $imagePath = $req->file('profile_image')->store('profile_images', 'public');
@@ -52,9 +52,9 @@ class AuthController extends Controller
 
         if(auth()->attempt($credentials)){
             return redirect()->route('HomePage')->with('success', "Profile created");
+        }else{
+            return redirect()->route("register")->withErrors(['email' => 'Invalid email or password']);
         }
-
-        return redirect()->route("register")->withErrors(['email' => 'Invalid email or password']);
     }
 
     public function login(Request $req){
@@ -62,9 +62,10 @@ class AuthController extends Controller
 
         if(auth()->attempt($credentials)){
             return redirect()->route('HomePage')->with('success','Login successfully');
+        }else{
+            return redirect()->route('/')->with('Email invalid');
         }
 
-        return redirect()->route('/')->widthErrors(['email' => 'invalid credentials']);
     }
 
     public function profile(){
