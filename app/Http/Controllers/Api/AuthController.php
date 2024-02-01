@@ -15,6 +15,7 @@ class AuthController extends Controller
         $user = Users::create([
             'username' => $req->username,
             'email' => $req->email,
+            'photo' => $req->photo,
             'password' => Hash::make($req->password),
             'api_token' => Str::random(60),
         ]);
