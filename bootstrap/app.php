@@ -51,5 +51,11 @@ $app->singleton(
 | from the actual running of the application and sending responses.
 |
 */
+$app->configure('modules');
+$app->register(\Nwidart\Modules\LumenModulesServiceProvider::class);
+
+$app->bind('path.public', function(){
+    return __DIR__ . 'public/';
+});
 
 return $app;
