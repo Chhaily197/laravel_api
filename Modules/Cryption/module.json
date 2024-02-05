@@ -1,0 +1,11 @@
+{
+    "name": "Cryption",
+    "alias": "cryption",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Cryption\\App\\Providers\\CryptionServiceProvider"
+    ],
+    "files": []
+}
