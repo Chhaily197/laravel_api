@@ -1,5 +1,7 @@
 {
     "Blogs": true,
     "Blog": true,
-    "Cryption": true
+    "Cryption": true,
+    "Books": true,
+    "Auth": true
 }
