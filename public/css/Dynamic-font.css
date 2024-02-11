@@ -1,0 +1,36 @@
+.custom-font-content-small {
+	font-size: 14px; /* Example font size */
+}
+
+.custom-font-content-medium {
+	font-size: 18px; /* Example font size */
+}
+
+.custom-font-content-large {
+	font-size: 24px; /* Example font size */
+}
+
+.custom-font-nav-small {
+	font-size: 12px; /* Example font size */
+}
+
+.custom-font-nav-medium {
+	font-size: 16px; /* Example font size */
+}
+
+.custom-font-nav-large {
+	font-size: 20px; /* Example font size */
+}
+
+/* Define custom font theme classes */
+.font-theme-default {
+	font-family: Arial, sans-serif; /* Default font theme */
+}
+
+.font-theme-serif {
+	font-family: Georgia, serif; /* Serif font theme */
+}
+
+.font-theme-monospace {
+	font-family: "Courier New", monospace; /* Monospace font theme */
+}
