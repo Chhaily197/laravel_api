@@ -4,23 +4,23 @@
     <h4>List years</h4>
     <button class="btn btn-primary btn-sm" id="btn_add">Add</button>
     @if ($data->isEmpty())
-        <p>No available year</p>
+        <p>No available faculty</p>
     @else
-    <table class="table table-borderless text-center bordered" id="tbyear">
+    <table class="table table-borderless text-center bordered" id="tbfaculty">
             <tr>
                 <th class="table-secondary">ID</th>
-                <th class="table-secondary">YEAR</th>
+                <th class="table-secondary">FACULTY</th>
                 <th class="table-primary">CREATE AT</th>
                 <th class="table-success">ACTIVE</th>
             </tr>
             @foreach ( $data as $i)
                 <tr>
-                    <td>{{ $i->year_id }}</td>
-                    <td>{{ $i->year_number }}</td>
+                    <td>{{ $i->faculty_id }}</td>
+                    <td>{{ $i->faculty_name }}</td>
                     <td>{{ $i->created_at }}</td>
                     <td>
                         <button class="btn btn-success btn-sm btnedit">EDIT</button>
-                        <form action="{{ route('delete.year',$i->year_id)}}" method="POST" class="d-inline">
+                        <form action="{{ route('delete.faculty',$i->faculty_id)}}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button 
@@ -38,12 +38,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Add Year</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Add Faculty</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div align="right"><a href="#" id="addyear"
+                        <div align="right"><a href="#" id="addfaculty"
                                 class="btn btn-primary btn-sm p-1">Add</a></div>
                         <table class="table-border text-center" id="addrow">
                             <tr>
@@ -53,7 +53,7 @@
                                 <tr>
                             <td>
                                 <div class="group-form mb-3">
-                                    <input type="text" class="form-control year" placeholder="Year number" name="year">
+                                    <input type="text" class="form-control faculty" placeholder="Faculty name" name="faculty">
                             </td>
                     </div>
                     </tr>
@@ -73,14 +73,14 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Edit Year</h5>
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Faculty</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="id">
                         <div class="group-form mb-3">
-                            <input type="text" id="year" placeholder="Year Name" class="form-control">
+                            <input type="text" id="faculty" placeholder="Faculty Name" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -100,12 +100,12 @@
                 $("#addModal").modal('show');
             });
 
-            $('#addyear').click(function(){
+            $('#addfaculty').click(function(){
                 $('#trow').append(`
                 <tr>
                     <td>
                     <div class="group-form mb-3">
-                        <input type="text" placeholder="Year Name" class="year form-control"/>
+                        <input type="text" placeholder="Faculty Name" class="faculty form-control"/>
                     </div>
                     </td>
                     <td>
@@ -123,7 +123,7 @@
 
             $('#btnsave').click(function(){
                 var err = 0;
-                var years = $('.year').map(function(){
+                var faculty = $('.faculty').map(function(){
                     var val = $(this).val();
                     if(val == ''){
                         err = 1;
@@ -132,34 +132,34 @@
                     }
                 }).get();
 
-                $.post(`{{ route("add.year") }}`, {'years[]':years}, function(data){
+                $.post(`{{ route("add.faculty") }}`, {'faculty[]':faculty}, function(data){
                     if(data == 1){
-                        alert("Year added successfully.");
-                        location.href = `{{ route('years')}}`;
+                        alert("Faculty added successfully.");
+                        location.href = `{{ route('faculty')}}`;
                     }
                 })
             });
 
             //Edit
-            $("#tbyear tr").on("click", '.btnedit', function(){
+            $("#tbfaculty tr").on("click", '.btnedit', function(){
                 var row = $(this).closest('tr');
                 var id = row.find('td').eq(0).text();
-                var year = row.find('td').eq(1).text();
+                var faculty = row.find('td').eq(1).text();
 
                 $('#id').val(id);
-                $("#year").val(year);
+                $("#faculty").val(faculty);
 
                 $("#editModal").modal('show');
             });
 
             $('#btnEdit').click(function(){
                 var id = $("#id").val();
-                var year = $("#year").val();
+                var faculty = $("#faculty").val();
 
-                $.post(`{{ route('edit.year') }}`, {id:id, year:year}, function(data){
+                $.post(`{{ route('edit.faculty') }}`, {id:id, faculty:faculty}, function(data){
                     if(data == 1){
-                        alert("Year updated successfully.");
-                        location.href = `{{ route('years') }}`;
+                        alert("Faculty updated successfully.");
+                        location.href = `{{ route('faculty') }}`;
                     }
                 })
             });

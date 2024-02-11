@@ -173,7 +173,7 @@
           </a> 
      </li>
       <li class="nav-item">
-          <a class="nav-link collapsed" href="/faculty">
+          <a class="nav-link collapsed" href="{{ route('faculty') }}">
                <i class="fa-solid fa-plus"></i>
                <span>Faculty</span>
           </a> 
@@ -185,7 +185,7 @@
           </a> 
      </li>
       <li class="nav-item">
-          <a class="nav-link collapsed" href="/semester">
+          <a class="nav-link collapsed" href="{{ route('sem') }}">
                <i class="fa-solid fa-plus"></i>
                <span>Semester</span>
           </a> 
