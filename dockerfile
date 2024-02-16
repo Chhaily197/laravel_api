@@ -1,1 +1,3 @@
 FROM baseImage
+
+./ file
