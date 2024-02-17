@@ -5,11 +5,58 @@ namespace Modules\Auth\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+
+    protected function authenticated(Request $req, $user){
+        $user->login_attempts = 0;
+        $user->save();
+    }
+
+    protected function credentials(Request $req){
+        return $req->only($this->email(), 'password');
+    }
+
+    protected function incrementLoginAttempts(Request $req){
+        $user = Users::where($this->email(), $req->{$this->email()})->first();
+        If($user){
+            $user->login_attempts++;
+            $user->last_login_attempt_at = now();
+            $user->save();
+        }
+    }
+
+    protected function login(Request $req){
+        $credentials = $req->only('email', 'password');
+
+        if(auth()->attempt($credentials)){
+            return redirect()->route('HomePage')->with('success','Login successfully');
+        }else{
+            return redirect()->route('form.login')->with('Email invalid');
+        }
+        // $user = Users::where('email', $req->email)->first();
+    }
+
+    protected function sendFailedLoginResponse(Request $req){
+        $this->incrementLoginAttempts($req);
+        return redirect()->back()
+        ->withInput($req->only($this->email(), 'remember'))
+        ->withErrors([
+            $this->email() => __('auth.failed')
+        ]);
+    }
+
+    public function username(){
+        return 'email';
+    }
+
+    protected function guard(){
+        return Auth::guard();
+    }
    
     public function showRegisterForm(){
         return view('auth::register');
@@ -55,17 +102,6 @@ class AuthController extends Controller
         }else{
             return redirect()->route("form.register")->withErrors(['email' => 'Invalid email or password']);
         }
-    }
-
-    public function login(Request $req){
-        $credentials = $req->only('email', 'password');
-
-        if(auth()->attempt($credentials)){
-            return redirect()->route('HomePage')->with('success','Login successfully');
-        }else{
-            return redirect()->route('form.login')->with('Email invalid');
-        }
-
     }
 
     public function profile(){
