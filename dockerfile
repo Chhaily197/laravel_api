@@ -5,6 +5,21 @@ FROM php:8.2-frm
 ARG user
 ARG uid
 
+# Use the official MySQL image from Docker Hub
+FROM mysql:latest
+
+#Set enviroment variable (options)
+ENV MYSQL_DATABASE=mydatabase \
+    MySQL_USER=root \   
+    MySQL_PASSWORD= \
+    MySQL_ROOT_PASSWORD=rootpassword
+
+# Copy custom Mysql configuration file
+COPY ./custom.cnf /etc/mysql/conf.d/custom.cnf
+
+# Expose poet 3306 (default Mysql port)
+EXPOSE 3306
+
 #Set working directory
 WORKDIR /var/www
 
@@ -32,9 +47,6 @@ RUN mkdir -p /home/$user/.composer && \
 
 #Install Laravel dependencies
 RUN composer install
-
-#Expose port 80
-EXPOSE 80
 
 USER $user
 
