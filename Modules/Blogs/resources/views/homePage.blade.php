@@ -8,9 +8,6 @@
         <video>
                 <source src="{{ asset('assets/videos/Sea.mp4')}}"  type="video/mp4"/>
         </video>
-        <h1>WELCOME HERE</h1>
-        <p>This is code update in the branch users, can you see</p>
-        <p>This is code update on time 4:54 pm</p>
-        <p>I want to check user verify username and password</p>
+        <h1>Why it update?</h1>
 </div>
 @endsection
