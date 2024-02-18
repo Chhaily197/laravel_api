@@ -8,6 +8,6 @@
         <video>
                 <source src="{{ asset('assets/videos/Sea.mp4')}}"  type="video/mp4"/>
         </video>
-        <h1>WELCOME</h1>
+        <h1>WELCOME HERE</h1>
 </div>
 @endsection
