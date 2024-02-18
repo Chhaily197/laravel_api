@@ -10,6 +10,6 @@
         </video>
         <h1>Why it update?</h1>
         lshdflskhdf
-        <p>I had unable global git</p>
+        <p>I had unable global git</p>ob_cleanasldfjsldkfj
 </div>
 @endsection
