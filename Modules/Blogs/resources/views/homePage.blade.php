@@ -9,5 +9,6 @@
                 <source src="{{ asset('assets/videos/Sea.mp4')}}"  type="video/mp4"/>
         </video>
         <h1>Why it update?</h1>
+        <p>lsdkjflskdjfsdlkfj</p>
 </div>
 @endsection
