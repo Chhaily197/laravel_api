@@ -10,7 +10,6 @@ Route::middleware(['throttle.login'])->group(function(){
     Route::post("/login", [AuthController::class, 'login'])->name('login');
 });
 
-
 Route::middleware(['auth'])->group(function(){
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::post("/logout", [AuthController::class, 'logout'])->name('logout');
